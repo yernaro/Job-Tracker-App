@@ -25,7 +25,7 @@ const AuthForm = ({ setUser }) => {
       if (error) {
         setError(error.message);
       } else {
-        setUser(null); // don't log in yet — wait for email confirmation
+        setUser(null); 
         setSuccessMessage("Signup successful! Please check your email to confirm your account.");
       }
     } else {
@@ -50,6 +50,8 @@ const AuthForm = ({ setUser }) => {
     setSuccessMessage("");
     setSubmitting(true);
 
+
+
     const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/reset-password`,
     });
@@ -58,16 +60,17 @@ const AuthForm = ({ setUser }) => {
       setError(error.message);
     } else {
       setSuccessMessage("Password reset email sent! Check your inbox.");
-      setResetMode(false); // return to login view
+      setResetMode(false); 
     }
 
     setSubmitting(false);
   };
 
+  
   return (
     <div className="min-h-screen flex flex-col items-center p-4 bg-gray-100 text-black dark:bg-gray-900 dark:text-white">
       {resetMode ? (
-        // Reset Password
+        
         <form onSubmit={handlePasswordReset} className="space-y-4 p-6 bg-white dark:bg-gray-800 shadow rounded w-full max-w-sm">
           <h2 className="text-xl font-bold text-center">Reset Password</h2>
           <input
@@ -87,7 +90,7 @@ const AuthForm = ({ setUser }) => {
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
         </form>
       ) : (
-        // Signup & Login
+        
         <form onSubmit={handleAuth} className="space-y-4 p-6 bg-white dark:bg-gray-800 shadow rounded w-full max-w-sm">
           <h2 className="text-xl font-bold text-center">{isSigningUp ? "Sign Up" : "Log In"}</h2>
           <input

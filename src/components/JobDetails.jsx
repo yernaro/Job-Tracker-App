@@ -15,15 +15,15 @@ const JobDetails = ({ job, closeJobDetails, saveEdit }) => {
 
     let updatedScreenshotUrl = updatedJob.screenshotUrl;
 
-    // remove existing screenshot (even if no new one is uploaded)
+    
     if (removeScreenshot && updatedScreenshotUrl) {
       await deleteScreenshotFromSupabase(updatedScreenshotUrl);
       updatedScreenshotUrl = null;
     }
 
-    // upload new screenshot
+    
     if (screenshotFile) {
-      // if we're replacing, clean up the old one first
+      
       if (updatedScreenshotUrl) {
         await deleteScreenshotFromSupabase(updatedScreenshotUrl);
       }
@@ -47,7 +47,7 @@ const JobDetails = ({ job, closeJobDetails, saveEdit }) => {
       }
     }
 
-    // save updated job
+    
     saveEdit({ ...updatedJob, screenshotUrl: updatedScreenshotUrl });
     setIsEditing(false);
   };
@@ -156,7 +156,7 @@ const JobDetails = ({ job, closeJobDetails, saveEdit }) => {
           </button>
         </form>
       ) : (
-        // Display Mode
+        
         <div>
           <p className={`font-bold mb-4 ${job.status === "Applied"
             ? "text-blue-400"

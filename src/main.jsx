@@ -9,8 +9,10 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
+
         <Route path="/" element={<App />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        
       </Routes>
     </BrowserRouter>
   </StrictMode>

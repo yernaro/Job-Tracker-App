@@ -17,11 +17,11 @@ const App = () => {
   const [jobs, setJobs] = useState([]);
   const [filter, setFilter] = useState("All");
   const [sortOrder, setSortOrder] = useState("newest");
-  const [selectedJob, setSelectedJob] = useState(null); // handles viewing details
+  const [selectedJob, setSelectedJob] = useState(null); 
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("darkMode") === "true");
   const [statsOpen, setStatsOpen] = useState(false);
 
-  // user session
+  
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user || null);
@@ -35,10 +35,10 @@ const App = () => {
     return () => listener?.subscription.unsubscribe();
   }, []);
 
-  // fetch jobs
+  
   useEffect(() => {
     const fetchJobs = async () => {
-      if (!user) return; // don't run if user variable is not ready
+      if (!user) return; 
 
       const { data, error } = await supabase
         .from('jobs')
@@ -49,20 +49,20 @@ const App = () => {
       if (error) {
         console.error("Error fetching jobs from Supabase:", error.message);
       } else {
-        setJobs(data.map(toCamel));  // change job field names to camelCase
+        setJobs(data.map(toCamel));  
       }
     };
 
     fetchJobs();
   }, [user]);
 
-  // dark mode
+  
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
     localStorage.setItem("darkMode", darkMode ? "true" : "false");
   }, [darkMode]);
 
-  // add job
+  
   const addJob = async (job) => {
     const camelJob = {
       ...job,
@@ -86,17 +86,17 @@ const App = () => {
     setJobs(getSortedJobs([...jobs, newJob], sortOrder));
   };
 
-  // delete job
+  
   const deleteJob = async (jobId) => {
-    // find the job first to get screenshot URL
+    
     const jobToDelete = jobs.find(job => job.id === jobId);
 
-    // if screenshot exists, attempt to delete it from Supabase Storage
+    
     if (jobToDelete?.screenshotUrl) {
       await deleteScreenshotFromSupabase(jobToDelete.screenshotUrl);
     }
 
-    // attempt to delete job
+    
     const { error } = await supabase
       .from('jobs')
       .delete()
@@ -118,9 +118,9 @@ const App = () => {
     setSelectedJob(null);
   };
 
-  // update job
+  
   const saveEdit = async (updatedJob) => {
-    // clean job fields
+    
     const camelJob = {
       ...updatedJob,
       postingLink: cleanField(updatedJob.postingLink),
@@ -128,7 +128,7 @@ const App = () => {
       description: cleanField(updatedJob.description),
     };
 
-    // update job in supabase
+    
     const { data, error } = await supabase
       .from('jobs')
       .update(fromCamel(camelJob))
@@ -140,10 +140,10 @@ const App = () => {
       return;
     }
 
-    // get updated job
+    
     const updated = toCamel(data[0]);
 
-    // update job list with updated job
+    
     setJobs(jobs.map(job => job.id === updatedJob.id ? updated : job));
 
     setSelectedJob(updated);
@@ -169,7 +169,7 @@ const App = () => {
           action={async () => {
             await supabase.auth.signOut();
             setUser(null);
-            setJobs([]); // clear job state on logout
+            setJobs([]); 
           }}
         />
         <HoverButton

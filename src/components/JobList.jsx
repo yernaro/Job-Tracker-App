@@ -29,6 +29,7 @@ const JobList = ({ jobs, deleteJob, viewJobDetails }) => {
                 {job.company} - {job.role}
               </span>
               <span className="flex gap-2 items-center">
+                
                 <HoverButton
                   message={job.status}
                   hoverMessage="Details"

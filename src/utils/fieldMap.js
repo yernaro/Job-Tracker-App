@@ -10,7 +10,6 @@ export const toCamel = (job) => ({
   createdAt: job.created_at,
 });
 
-
 export const fromCamel = (job) => ({
   company: job.company,
   role: job.role,

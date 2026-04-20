@@ -6,7 +6,7 @@ const ResetPassword = () => {
   const [sessionChecked, setSessionChecked] = useState(false);
   const [user, setUser] = useState(null);
   const [newPassword, setNewPassword] = useState("");
-  const [status, setStatus] = useState("waiting"); // waiting, success, error
+  const [status, setStatus] = useState("waiting"); 
   const navigate = useNavigate();
 
   useEffect(() => {

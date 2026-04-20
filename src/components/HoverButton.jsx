@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const HoverButton = ({ message, hoverMessage, classes, action }) => {
+  
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -17,5 +18,6 @@ const HoverButton = ({ message, hoverMessage, classes, action }) => {
     </motion.button>
   );
 };
+
 
 export default HoverButton;

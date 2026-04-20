@@ -1,9 +1,9 @@
 import { supabase } from "../supabaseClient";
 
-// clean job fields
+
 export const cleanField = (value) => (value?.trim() === "" ? null : value);
 
-// sort jobs
+
 export const getSortedJobs = (jobList, sortOrder) => {
   return [...jobList].sort((a, b) => {
     if (sortOrder === "newest") {
@@ -19,13 +19,14 @@ export const getSortedJobs = (jobList, sortOrder) => {
   });
 };
 
-// filter jobs
+
 export const getFilteredAndSortedJobs = (jobs, filter, sortOrder) => {
   const filtered = filter === "All" ? jobs : jobs.filter(job => job.status === filter);
   return getSortedJobs(filtered, sortOrder);
 };
 
-// delete screenshot from supabase (after deleting or editing job)
+
+
 export const deleteScreenshotFromSupabase = async (screenshotUrl) => {
   try {
     const url = new URL(screenshotUrl);

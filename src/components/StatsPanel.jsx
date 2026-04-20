@@ -21,7 +21,7 @@ const StatsPanel = ({ jobs, isOpen, togglePanel }) => {
       >
         <TiDelete/>
       </button>
-      <h2 className="text-xl font-bold mb-4">📊 Job Statistics</h2>
+      <h2 className="text-xl font-bold mb-4">📊 Job Statistics </h2>
       <p><strong>Total Applications:</strong> {totalJobs}</p>
       <p className="text-blue-400"><strong>Applied:</strong> {statusCounts["Applied"] || 0}</p>
       <p className="text-yellow-600 dark:text-yellow-400"><strong>Interview:</strong> {statusCounts["Interview"] || 0}</p>

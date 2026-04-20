@@ -39,9 +39,10 @@ const JobForm = ({ addJob }) => {
   
     addJob({ ...job, screenshotUrl });
   
-    // reset form
+    
     setJob({ company: "", role: "", status: "Applied", description: "", postingLink: "", screenshotUrl: "" });
     setScreenshotFile(null);
+    
   };
 
   return (
